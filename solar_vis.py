@@ -5,14 +5,20 @@
 Нигде, кроме этого модуля, не используются экранные координаты объектов.
 Функции, создающие графические объекты и перемещающие их на экране, принимают физические координаты
 """
+import sys
+from PyQt5.QtWidgets import QDesktopWidget,QApplication
+app = QApplication(sys.argv)
+q= QDesktopWidget().availableGeometry()
+print("width =", q.width())
+print("height =", q.height())
 
 header_font = "Arial-16"
 """Шрифт в заголовке"""
 
-window_width = 800
+window_width = q.width()
 """Ширина окна"""
 
-window_height = 800
+window_height = q.height() - 100
 """Высота окна"""
 
 scale_factor = None
@@ -54,7 +60,7 @@ def scale_y(y):
     **y** — y-координата модели.
     """
 
-    return y  # FIXME: not done yet
+    return window_height//2 - int(y*scale_factor)
 
 
 def create_star_image(space, star):
@@ -80,7 +86,10 @@ def create_planet_image(space, planet):
     **space** — холст для рисования.
     **planet** — объект планеты.
     """
-    pass  # FIXME: сделать как у звезды
+    x = scale_x(planet.x)
+    y = scale_y(planet.y)
+    r = planet.R
+    planet.image = space.create_oval([x - r, y - r], [x + r, y + r], fill=planet.color)
 
 
 def update_system_name(space, system_name):
