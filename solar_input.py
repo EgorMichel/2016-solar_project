@@ -47,26 +47,14 @@ def parse_star_parameters(line, star):
     **line** — строка с описание звезды.
     **star** — объект звезды.
     """
-    star_massive = line.split()
-    for i in range(len(star_massive)):
-        if i == 0:
-            star.type = star[0]
-        if i == 1 or 2 < i <= 7:
-            star_massive[i] = int(star_massive[i])
-        if i == 2:
-            star.color = star[i]
-        if i == 1:
-            star.R = star_massive[i]
-        if i == 3:
-            star.m = star_massive[i]
-        if i == 4:
-            star.x = star_massive[i]
-        if i == 5:
-            star.y = star_massive[i]
-        if i == 6:
-            star.Vx = star_massive[i]
-        if i == 7:
-            star.Vy = star_massive[i]
+    star.type = line.split()[0]
+    star.R = int(line.split()[1])
+    star.color = line.split()[2]
+    star.m = int(line.split()[3])
+    star.x = int(line.split()[4])
+    star.y = int(line.split()[5])
+    star.Vx = int(line.split()[6])
+    star.Vy = int(line.split()[7])
 
 
 def parse_planet_parameters(line, planet):
@@ -84,26 +72,14 @@ def parse_planet_parameters(line, planet):
     **line** — строка с описание планеты.
     **planet** — объект планеты.
     """
-    planet_massive = line.split()
-    for i in range(len(planet_massive)):
-        if i == 0:
-            planet.type = planet[0]
-        if i == 1 or 2 < i <= 7:
-            planet_massive[i] = int(planet_massive[i])
-        if i == 1:
-            planet.R = planet_massive[i]
-        if i == 2:
-            planet.color = planet[i]
-        if i == 3:
-            planet.m = planet_massive[i]
-        if i == 4:
-            planet.x = planet_massive[i]
-        if i == 5:
-            planet.y = planet_massive[i]
-        if i == 6:
-            planet.Vx = planet_massive[i]
-        if i == 7:
-            planet.Vy = planet_massive[i]
+    planet.type = line.split()[0]
+    planet.R = int(line.split()[1])
+    planet.color = line.split()[2]
+    planet.m = int(line.split()[3])
+    planet.x = int(line.split()[4])
+    planet.y = int(line.split()[5])
+    planet.Vx = int(line.split()[6])
+    planet.Vy = int(line.split()[7])
 
 
 def write_space_objects_data_to_file(output_filename, space_objects):
@@ -120,6 +96,7 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
             print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
+            out_file.writelines(obj)
             # FIXME: should store real values
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
