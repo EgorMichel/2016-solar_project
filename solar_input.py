@@ -41,24 +41,40 @@ def parse_parameters(line):
     if object_type == "star":
         star = Star()
         star.type = line.split()[0]
-        star.R = int(line.split()[1])
+        star.R = int(float(line.split()[1]))
         star.color = line.split()[2]
+<<<<<<< HEAD
         star.m = float(line.split()[3])
         star.x = float(line.split()[4])
         star.y = float(line.split()[5])
         star.Vx = float(line.split()[6])
         star.Vy = float(line.split()[7])
+=======
+        star.m = int(float(line.split()[3]))
+        star.x = int(float(line.split()[4]))
+        star.y = int(float(line.split()[5]))
+        star.Vx = int(float(line.split()[6]))
+        star.Vy = int(float(line.split()[7]))
+>>>>>>> 5a0d5940484076d53b3f2ede23c26355f29beacb
         return star
     elif object_type == "planet":
         planet = Planet()
         planet.type = line.split()[0]
-        planet.R = int(line.split()[1])
+        planet.R = int(float(line.split()[1]))
         planet.color = line.split()[2]
+<<<<<<< HEAD
         planet.m = float(line.split()[3])
         planet.x = float(line.split()[4])
         planet.y = float(line.split()[5])
         planet.Vx = float(line.split()[6])
         planet.Vy = float(line.split()[7])
+=======
+        planet.m = int(float(line.split()[3]))
+        planet.x = int(float(line.split()[4]))
+        planet.y = int(float(line.split()[5]))
+        planet.Vx = int(float(line.split()[6]))
+        planet.Vy = int(float(line.split()[7]))
+>>>>>>> 5a0d5940484076d53b3f2ede23c26355f29beacb
         return planet
     else:
         print("Unknown space object")

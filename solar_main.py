@@ -7,6 +7,7 @@ from solar_vis import *
 from solar_model import *
 from solar_input import *
 
+
 perform_execution = False
 """Флаг цикличности выполнения расчёта"""
 
@@ -89,6 +90,7 @@ def open_file_dialog():
         elif obj.type == 'Planet':
             create_planet_image(space, obj)
         else:
+            print(obj.type)
             raise AssertionError()
 
 
@@ -147,6 +149,7 @@ def main():
 
     root.mainloop()
     print('Modelling finished!')
+
 
 if __name__ == "__main__":
     main()
