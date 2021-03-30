@@ -43,22 +43,22 @@ def parse_parameters(line):
         star.type = line.split()[0]
         star.R = int(line.split()[1])
         star.color = line.split()[2]
-        star.m = line.split()[3].format(float)
-        star.x = line.split()[4].format(float)
-        star.y = line.split()[5].format(float)
-        star.Vx = line.split()[6].format(float)
-        star.Vy = line.split()[7].format(float)
+        star.m = float(line.split()[3])
+        star.x = float(line.split()[4])
+        star.y = float(line.split()[5])
+        star.Vx = float(line.split()[6])
+        star.Vy = float(line.split()[7])
         return star
     elif object_type == "planet":
         planet = Planet()
         planet.type = line.split()[0]
         planet.R = int(line.split()[1])
         planet.color = line.split()[2]
-        planet.m = line.split()[3].format(float)
-        planet.x = line.split()[4].format(float)
-        planet.y = line.split()[5].format(float)
-        planet.Vx = line.split()[6].format(float)
-        planet.Vy = line.split()[7].format(float)
+        planet.m = float(line.split()[3])
+        planet.x = float(line.split()[4])
+        planet.y = float(line.split()[5])
+        planet.Vx = float(line.split()[6])
+        planet.Vy = float(line.split()[7])
         return planet
     else:
         print("Unknown space object")
@@ -78,11 +78,14 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
             print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
-            mass = [obj.type, obj.R, obj.color, obj.mass, obj.x, obj.y, obj.Vx, obj.Vy, obj.Fy, obj.Fy]
+            mass = [obj.type, str(obj.R), obj.color, str(obj.m), str(obj.x),
+                    str(obj.y), str(obj.Vx), str(obj.Vy),
+                    str(obj.Fy), str(obj.Fy), '\n']
             out_file.writelines(' '.join(mass))
 
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
+
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
