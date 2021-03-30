@@ -41,7 +41,7 @@ def parse_parameters(line):
     if object_type == "star":
         star = Star()
         star.type = line.split()[0]
-        star.R = int(float(line.split()[1]))
+        star.R = float(line.split()[1])
         star.color = line.split()[2]
         star.m = float(line.split()[3])
         star.x = float(line.split()[4])
@@ -52,7 +52,7 @@ def parse_parameters(line):
     elif object_type == "planet":
         planet = Planet()
         planet.type = line.split()[0]
-        planet.R = int(float(line.split()[1]))
+        planet.R = float(line.split()[1])
         planet.color = line.split()[2]
         planet.m = float(line.split()[3])
         planet.x = float(line.split()[4])
