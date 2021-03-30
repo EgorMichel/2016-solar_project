@@ -41,24 +41,24 @@ def parse_parameters(line):
     if object_type == "star":
         star = Star()
         star.type = line.split()[0]
-        star.R = int(line.split()[1])
+        star.R = int(float(line.split()[1]))
         star.color = line.split()[2]
-        star.m = int(line.split()[3])
-        star.x = int(line.split()[4])
-        star.y = int(line.split()[5])
-        star.Vx = int(line.split()[6])
-        star.Vy = int(line.split()[7])
+        star.m = int(float(line.split()[3]))
+        star.x = int(float(line.split()[4]))
+        star.y = int(float(line.split()[5]))
+        star.Vx = int(float(line.split()[6]))
+        star.Vy = int(float(line.split()[7]))
         return star
     elif object_type == "planet":
         planet = Planet()
         planet.type = line.split()[0]
-        planet.R = int(line.split()[1])
+        planet.R = int(float(line.split()[1]))
         planet.color = line.split()[2]
-        planet.m = int(line.split()[3])
-        planet.x = int(line.split()[4])
-        planet.y = int(line.split()[5])
-        planet.Vx = int(line.split()[6])
-        planet.Vy = int(line.split()[7])
+        planet.m = int(float(line.split()[3]))
+        planet.x = int(float(line.split()[4]))
+        planet.y = int(float(line.split()[5]))
+        planet.Vx = int(float(line.split()[6]))
+        planet.Vy = int(float(line.split()[7]))
         return planet
     else:
         print("Unknown space object")
@@ -82,6 +82,7 @@ def write_space_objects_data_to_file(output_filename, space_objects):
             # FIXME: should store real values
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
+
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
