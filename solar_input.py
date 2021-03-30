@@ -43,22 +43,22 @@ def parse_parameters(line):
         star.type = line.split()[0]
         star.R = int(line.split()[1])
         star.color = line.split()[2]
-        star.m = int(line.split()[3])
-        star.x = int(line.split()[4])
-        star.y = int(line.split()[5])
-        star.Vx = int(line.split()[6])
-        star.Vy = int(line.split()[7])
+        star.m = line.split()[3].format(float)
+        star.x = line.split()[4].format(float)
+        star.y = line.split()[5].format(float)
+        star.Vx = line.split()[6].format(float)
+        star.Vy = line.split()[7].format(float)
         return star
     elif object_type == "planet":
         planet = Planet()
         planet.type = line.split()[0]
         planet.R = int(line.split()[1])
         planet.color = line.split()[2]
-        planet.m = int(line.split()[3])
-        planet.x = int(line.split()[4])
-        planet.y = int(line.split()[5])
-        planet.Vx = int(line.split()[6])
-        planet.Vy = int(line.split()[7])
+        planet.m = line.split()[3].format(float)
+        planet.x = line.split()[4].format(float)
+        planet.y = line.split()[5].format(float)
+        planet.Vx = line.split()[6].format(float)
+        planet.Vy = line.split()[7].format(float)
         return planet
     else:
         print("Unknown space object")
@@ -78,8 +78,9 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     with open(output_filename, 'w') as out_file:
         for obj in space_objects:
             print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
-            out_file.writelines(obj)
-            # FIXME: should store real values
+            mass = [obj.type, obj.R, obj.color, obj.mass, obj.x, obj.y, obj.Vx, obj.Vy, obj.Fy, obj.Fy]
+            out_file.writelines(' '.join(mass))
+
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
 
