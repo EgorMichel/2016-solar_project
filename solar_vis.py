@@ -45,7 +45,8 @@ def scale_x(x):
     **x** — x-координата модели.
     """
 
-    return int(x*scale_factor) + window_width//2
+
+    return int(x * scale_factor) + window_width//2
 
 
 def scale_y(y):
@@ -114,6 +115,8 @@ def update_object_position(space, body):
     """
     x = scale_x(body.x)
     y = scale_y(body.y)
+    print(x)
+    print(y)
     r = body.R
     if x + r < 0 or x - r > window_width or y + r < 0 or y - r > window_height:
         space.coords(body.image, window_width + r, window_height + r,

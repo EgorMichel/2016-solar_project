@@ -33,11 +33,13 @@ def execution():
     Цикличность выполнения зависит от значения глобальной переменной perform_execution.
     При perform_execution == True функция запрашивает вызов самой себя по таймеру через от 1 мс до 100 мс.
     """
+    print('start!')
     global physical_time
     global displayed_time
     recalculate_space_objects_positions(space_objects, time_step.get())
     for body in space_objects:
         update_object_position(space, body)
+
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
 
@@ -45,10 +47,13 @@ def execution():
         space.after(101 - int(time_speed.get()), execution)
 
 
+
+
 def start_execution():
     """Обработчик события нажатия на кнопку Start.
     Запускает циклическое исполнение функции execution.
     """
+    print('start')
     global perform_execution
     perform_execution = True
     start_button['text'] = "Pause"
@@ -82,6 +87,7 @@ def open_file_dialog():
     in_filename = askopenfilename(filetypes=(("Text file", ".txt"),))
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.x), abs(obj.y)) for obj in space_objects])
+
     calculate_scale_factor(max_distance)
 
     for obj in space_objects:
