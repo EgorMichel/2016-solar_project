@@ -5,20 +5,20 @@
 Нигде, кроме этого модуля, не используются экранные координаты объектов.
 Функции, создающие графические объекты и перемещающие их на экране, принимают физические координаты
 """
-import sys
-from PyQt5.QtWidgets import QDesktopWidget,QApplication
-app = QApplication(sys.argv)
-q= QDesktopWidget().availableGeometry()
-print("width =", q.width())
-print("height =", q.height())
+# import sys
+# from PyQt5.QtWidgets import QDesktopWidget, QApplication
+# app = QApplication(sys.argv)
+# q= QDesktopWidget().availableGeometry()
+# print("width =", q.width())
+# print("height =", q.height())
 
 header_font = "Arial-16"
 """Шрифт в заголовке"""
 
-window_width = q.width()
+window_width = 800
 """Ширина окна"""
 
-window_height = q.height() - 100
+window_height = 800
 """Высота окна"""
 
 scale_factor = None
