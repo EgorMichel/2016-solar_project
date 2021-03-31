@@ -1,6 +1,7 @@
 # coding: utf-8
 # license: GPLv3
 
+
 class Celestial_Body:
     def __init__(self, type='', m=0, x=0, y=0, Vx=0, Vy=0, Fx=0, Fy=0, R=0, color=''):
         self.type = type

@@ -38,6 +38,7 @@ def execution():
     recalculate_space_objects_positions(space_objects, time_step.get())
     for body in space_objects:
         update_object_position(space, body)
+        save_statistics_to_file("Test.txt", body)
 
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
