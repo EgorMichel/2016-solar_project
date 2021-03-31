@@ -36,8 +36,8 @@ def draw_graphics(file_name):
                     v_star = np.append(v_star, v)
 
                 if line.split()[0] == "Planet":
-                    x_planet = np.append(x_star, float(line.split()[4]))
-                    y_planet = np.append(y_star, float(line.split()[5]))
+                    x_planet = np.append(x_planet, float(line.split()[4]))
+                    y_planet = np.append(y_planet, float(line.split()[5]))
                     vx = float(line.split()[6])
                     vy = float(line.split()[7])
                     v = (vx ** 2 + vy ** 2)**0.5
@@ -86,7 +86,7 @@ def draw_graphics(file_name):
         r0 = temp[:-1]
         print(len(ro), len(v_planet))
 
-    plt.plot(ro, v_planet)
+    plt.plot(v_star, v_planet)
     plt.xlabel('Расстояние, м')
     plt.ylabel('Скорость, м/с')
     plt.title('Зависимость скорости спутника \n от расстояния до звезды')
