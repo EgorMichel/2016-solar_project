@@ -41,7 +41,7 @@ def click(event):
         y = window_height//2 - int(obj.y*Scale)
         if (event.x - x) ** 2 + (event.y - y) ** 2 < obj.R ** 2:
             print('sosi')
-            draw_graphics(file_name)
+            draw_graphics(file_name, obj.m)
 
 
 def execution():

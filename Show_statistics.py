@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def draw_graphics(file_name):
+def draw_graphics(file_name, mass):
     x_star = np.array([])
     y_star = np.array([])
     v_star = np.array([])
@@ -36,12 +36,13 @@ def draw_graphics(file_name):
                     v_star = np.append(v_star, v)
 
                 if line.split()[0] == "Planet":
-                    x_planet = np.append(x_planet, float(line.split()[4]))
-                    y_planet = np.append(y_planet, float(line.split()[5]))
-                    vx = float(line.split()[6])
-                    vy = float(line.split()[7])
-                    v = (vx ** 2 + vy ** 2)**0.5
-                    v_planet = np.append(v_planet, v)
+                    if float(line.split()[3]) == mass:
+                        x_planet = np.append(x_planet, float(line.split()[4]))
+                        y_planet = np.append(y_planet, float(line.split()[5]))
+                        vx = float(line.split()[6])
+                        vy = float(line.split()[7])
+                        v = (vx ** 2 + vy ** 2)**0.5
+                        v_planet = np.append(v_planet, v)
 
     if len(x_star) > len(x_planet):
         print('sosi2')
