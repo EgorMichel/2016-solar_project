@@ -11,6 +11,7 @@ def draw_graphics(file_name, mass):
     v_planet = np.array([])
     time_star = np.array([])
     time_planet = np.array([])
+    name = ''
 
     # star.type = line.split()[0]
     # star.R = float(line.split()[1])
@@ -37,6 +38,7 @@ def draw_graphics(file_name, mass):
 
                 if line.split()[0] == "Planet":
                     if float(line.split()[3]) == mass:
+                        name = line.split()[10]
                         x_planet = np.append(x_planet, float(line.split()[4]))
                         y_planet = np.append(y_planet, float(line.split()[5]))
                         vx = float(line.split()[6])
@@ -88,9 +90,9 @@ def draw_graphics(file_name, mass):
         print(len(ro), len(v_planet))
 
     plt.plot(ro, v_planet)
-    plt.xlabel('Расстояние, м')
-    plt.ylabel('Скорость, м/с')
-    plt.title('Зависимость скорости спутника \n от расстояния до звезды')
+    plt.xlabel('Distance, m')
+    plt.ylabel('Velocity, m/s')
+    plt.title('Dependence of the velocity of ' + name + '\n on the distance to the Star')
     plt.grid()
     plt.savefig('velocity(distance).png')
     plt.show()

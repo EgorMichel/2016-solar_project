@@ -3,7 +3,7 @@
 
 
 class Celestial_Body:
-    def __init__(self, type='', m=0, x=0, y=0, Vx=0, Vy=0, Fx=0, Fy=0, R=0, color=''):
+    def __init__(self, type='', m=0, x=0, y=0, Vx=0, Vy=0, Fx=0, Fy=0, R=0, color='', name=''):
         self.type = type
         """Признак объекта планеты"""
 
@@ -33,6 +33,9 @@ class Celestial_Body:
 
         self.color = color
         """Цвет планеты"""
+
+        self.name = name
+        "Название планеты"
 
         image = None
         """Изображение планеты"""

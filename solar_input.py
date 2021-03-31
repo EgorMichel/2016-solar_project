@@ -59,6 +59,7 @@ def parse_parameters(line):
         planet.y = float(line.split()[5])
         planet.Vx = float(line.split()[6])
         planet.Vy = float(line.split()[7])
+        planet.name = line.split()[10]
 
         return planet
     else:
@@ -81,7 +82,7 @@ def write_space_objects_data_to_file(output_filename, space_objects):
             print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
             mass = [obj.type, str(obj.R), obj.color, str(obj.m), str(obj.x),
                     str(obj.y), str(obj.Vx), str(obj.Vy),
-                    str(obj.Fy), str(obj.Fy), '\n']
+                    str(obj.Fy), str(obj.Fy), obj.name, '\n']
             out_file.writelines(' '.join(mass))
     file = open("Test.txt", "w")
     file.close()
@@ -90,7 +91,7 @@ def write_space_objects_data_to_file(output_filename, space_objects):
 def save_statistics_to_file(file, obj):
         mass = [obj.type, str(obj.R), obj.color, str(obj.m), str(obj.x),
                 str(obj.y), str(obj.Vx), str(obj.Vy),
-                str(obj.Fy), str(obj.Fy), '\n']
+                str(obj.Fy), str(obj.Fy), obj.name, '\n']
         file.writelines(' '.join(mass))
 
 
