@@ -12,14 +12,12 @@ def read_space_objects_data_from_file(input_filename):
 
     **input_filename** — имя входного файла
     """
-
     objects = []
     with open(input_filename) as input_file:
         for line in input_file:
             if len(line.strip()) == 0 or line[0] == '#':
                 continue  # пустые строки и строки-комментарии пропускаем
             objects.append(parse_parameters(line))
-
     return objects
 
 
@@ -88,10 +86,10 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     file.close()
 
 
-def save_statistics_to_file(file, obj):
+def save_statistics_to_file(file, obj, time):
         mass = [obj.type, str(obj.R), obj.color, str(obj.m), str(obj.x),
                 str(obj.y), str(obj.Vx), str(obj.Vy),
-                str(obj.Fy), str(obj.Fy), obj.name, '\n']
+                str(obj.Fy), str(obj.Fy), obj.name, str(time), '\n']
         file.writelines(' '.join(mass))
 
 

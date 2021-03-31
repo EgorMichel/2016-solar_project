@@ -56,8 +56,7 @@ def execution():
     recalculate_space_objects_positions(space_objects, time_step.get())
     for body in space_objects:
         update_object_position(space, body)
-        save_statistics_to_file(file, body)
-
+        save_statistics_to_file(file, body, float(displayed_time.get()[:-13]))
 
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
@@ -78,7 +77,6 @@ def start_execution():
 
     execution()
     print('Started execution...')
-
 
 
 def stop_execution():
@@ -118,6 +116,9 @@ def open_file_dialog():
         else:
             print(obj.type)
             raise AssertionError()
+
+    file = open("Test.txt", "w")
+    file.close()
 
 
 def save_file_dialog():
