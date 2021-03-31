@@ -83,6 +83,8 @@ def write_space_objects_data_to_file(output_filename, space_objects):
                     str(obj.y), str(obj.Vx), str(obj.Vy),
                     str(obj.Fy), str(obj.Fy), '\n']
             out_file.writelines(' '.join(mass))
+    file = open("Test.txt", "w")
+    file.close()
 
 
 def save_statistics_to_file(file, obj):

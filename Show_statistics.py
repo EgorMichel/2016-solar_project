@@ -48,27 +48,27 @@ def draw_graphics(file_name, mass):
         print('sosi2')
         temp = []
         temp = x_star
-        x_star = temp[:-1]
+        x_star = temp[:-(len(x_star) - len(x_planet))]
         print(len(x_star), len(x_planet))
     if len(x_star) < len(x_planet):
         print('sosi3')
         temp = []
         temp = x_planet
-        x_planet = temp[:-1]
+        x_planet = temp[:-(len(x_planet) - len(x_star))]
         print(len(x_star), len(x_planet))
 
     if len(y_star) > len(y_planet):
         print('sosi4')
         temp = []
         temp = y_star
-        y_star = temp[:-1]
+        y_star = temp[:-(len(y_star) - len(y_planet))]
         print(len(y_star), len(y_planet))
 
     if len(y_star) < len(y_planet):
         print('sosi5')
         temp = []
         temp = y_planet
-        y_planet = temp[:-1]
+        y_planet = temp[:-(len(y_planet) - len(y_star))]
         print(len(y_star), len(y_planet))
 
     ro = np.sqrt((x_star - x_planet) ** 2 + (y_star - y_planet) ** 2)
@@ -77,17 +77,17 @@ def draw_graphics(file_name, mass):
         print("sosi6")
         temp = []
         temp = v_planet
-        v_planet = temp[:-1]
+        v_planet = temp[:-(len(v_planet) - len(ro))]
         print(len(ro), len(v_planet))
 
-    if len(ro) < len(v_planet):
+    if len(ro) > len(v_planet):
         print("sosi7")
         temp = []
         temp = ro
-        r0 = temp[:-1]
+        ro = temp[:-(len(ro) - len(v_planet))]
         print(len(ro), len(v_planet))
 
-    plt.plot(v_star, v_planet)
+    plt.plot(ro, v_planet)
     plt.xlabel('Расстояние, м')
     plt.ylabel('Скорость, м/с')
     plt.title('Зависимость скорости спутника \n от расстояния до звезды')

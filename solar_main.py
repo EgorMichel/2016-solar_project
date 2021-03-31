@@ -37,11 +37,12 @@ file = open(file_name, "a+")
 
 def click(event):
     for obj in space_objects:
-        x = int(obj.x * Scale) + window_width//2
-        y = window_height//2 - int(obj.y*Scale)
-        if (event.x - x) ** 2 + (event.y - y) ** 2 < obj.R ** 2:
-            print('sosi')
-            draw_graphics(file_name, obj.m)
+        if obj.type == "Planet":
+            x = int(obj.x * Scale) + window_width//2
+            y = window_height//2 - int(obj.y*Scale)
+            if (event.x - x) ** 2 + (event.y - y) ** 2 < obj.R ** 2:
+                print('sosi')
+                draw_graphics(file_name, obj.m)
 
 
 def execution():
