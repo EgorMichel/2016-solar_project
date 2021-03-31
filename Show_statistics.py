@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import math
 
 
 def draw_graphics(file_name):
@@ -26,30 +25,67 @@ def draw_graphics(file_name):
             if len(line.strip()) == 0 or line[0] == '#':
                 continue  # пустые строки и строки-комментарии пропускаем
             if len(line) < 140:
-                pass
+                continue
             else:
                 if line.split()[0] == "Star":
-                    print(line)
                     x_star = np.append(x_star, float(line.split()[4]))
                     y_star = np.append(y_star, float(line.split()[5]))
                     vx = float(line.split()[6])
                     vy = float(line.split()[7])
-                    v = math.sqrt(vx**2 + vy**2)
+                    v = (vx**2 + vy**2)**0.5
                     v_star = np.append(v_star, v)
-                    # time_star = np.append(time_star, float(line[4]))
 
                 if line.split()[0] == "Planet":
-                    print(line)
                     x_planet = np.append(x_star, float(line.split()[4]))
                     y_planet = np.append(y_star, float(line.split()[5]))
                     vx = float(line.split()[6])
                     vy = float(line.split()[7])
-                    v = math.sqrt(vx ** 2 + vy ** 2)
+                    v = (vx ** 2 + vy ** 2)**0.5
                     v_planet = np.append(v_planet, v)
-    if len(x_star) != len(x_planet) or len(y_star) != len(y_planet):
-        np.resize(x_star, len(x_planet))
-        np.resize(y_star, len(y_planet))
+
+    if len(x_star) > len(x_planet):
+        print('sosi2')
+        temp = []
+        temp = x_star
+        x_star = temp[:-1]
+        print(len(x_star), len(x_planet))
+    if len(x_star) < len(x_planet):
+        print('sosi3')
+        temp = []
+        temp = x_planet
+        x_planet = temp[:-1]
+        print(len(x_star), len(x_planet))
+
+    if len(y_star) > len(y_planet):
+        print('sosi4')
+        temp = []
+        temp = y_star
+        y_star = temp[:-1]
+        print(len(y_star), len(y_planet))
+
+    if len(y_star) < len(y_planet):
+        print('sosi5')
+        temp = []
+        temp = y_planet
+        y_planet = temp[:-1]
+        print(len(y_star), len(y_planet))
+
     ro = np.sqrt((x_star - x_planet) ** 2 + (y_star - y_planet) ** 2)
+
+    if len(ro) < len(v_planet):
+        print("sosi6")
+        temp = []
+        temp = v_planet
+        v_planet = temp[:-1]
+        print(len(ro), len(v_planet))
+
+    if len(ro) < len(v_planet):
+        print("sosi7")
+        temp = []
+        temp = ro
+        r0 = temp[:-1]
+        print(len(ro), len(v_planet))
+
     plt.plot(ro, v_planet)
     plt.xlabel('Расстояние, м')
     plt.ylabel('Скорость, м/с')
