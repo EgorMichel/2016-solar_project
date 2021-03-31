@@ -6,7 +6,7 @@ from tkinter.filedialog import *
 from solar_vis import *
 from solar_model import *
 from solar_input import *
-
+from Show_statistics import *
 
 perform_execution = False
 """Флаг цикличности выполнения расчёта"""
@@ -28,13 +28,19 @@ space_objects = []
 
 Scale = 0
 
+file_name = "Test.txt"
+file = open(file_name, "w")
+file.close()
+
+file = open(file_name, "a+")
+
 
 def click(event):
     for obj in space_objects:
         x = int(obj.x * Scale) + window_width//2
         y = window_height//2 - int(obj.y*Scale)
         if (event.x - x) ** 2 + (event.y - y) ** 2 < obj.R ** 2:
-            print('sosi')
+            draw_graphics(file_name)
 
 
 def execution():
@@ -48,7 +54,8 @@ def execution():
     recalculate_space_objects_positions(space_objects, time_step.get())
     for body in space_objects:
         update_object_position(space, body)
-        save_statistics_to_file("Test.txt", body)
+        save_statistics_to_file(file, body)
+
 
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
@@ -69,6 +76,7 @@ def start_execution():
 
     execution()
     print('Started execution...')
+
 
 
 def stop_execution():
@@ -171,3 +179,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
