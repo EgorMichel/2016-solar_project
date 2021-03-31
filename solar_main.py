@@ -26,6 +26,16 @@ time_step = None
 space_objects = []
 """Список космических объектов."""
 
+Scale = 0
+
+
+def click(event):
+    for obj in space_objects:
+        x = int(obj.x * Scale) + window_width//2
+        y = window_height//2 - int(obj.y*Scale)
+        if (event.x - x) ** 2 + (event.y - y) ** 2 < obj.R ** 2:
+            print('sosi')
+
 
 def execution():
     """Функция исполнения -- выполняется циклически, вызывая обработку всех небесных тел,
@@ -45,8 +55,6 @@ def execution():
 
     if perform_execution:
         space.after(101 - int(time_speed.get()), execution)
-
-
 
 
 def start_execution():
@@ -81,6 +89,8 @@ def open_file_dialog():
     """
     global space_objects
     global perform_execution
+    global Scale
+
     perform_execution = False
     for obj in space_objects:
         space.delete(obj.image)  # удаление старых изображений планет
@@ -88,7 +98,7 @@ def open_file_dialog():
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.x), abs(obj.y)) for obj in space_objects])
 
-    calculate_scale_factor(max_distance)
+    Scale = calculate_scale_factor(max_distance)
 
     for obj in space_objects:
         if obj.type == 'Star':
@@ -130,6 +140,8 @@ def main():
     # нижняя панель с кнопками
     frame = tkinter.Frame(root)
     frame.pack(side=tkinter.BOTTOM)
+
+    space.bind('<1>', click)
 
     start_button = tkinter.Button(frame, text="Start", command=start_execution, width=6)
     start_button.pack(side=tkinter.LEFT)
