@@ -27,7 +27,6 @@ space_objects = []
 """Список космических объектов."""
 
 Scale = 0
-"""Масштаб"""
 
 file_name = "Test.txt"
 file = open(file_name, "w")
@@ -57,7 +56,8 @@ def execution():
     recalculate_space_objects_positions(space_objects, time_step.get())
     for body in space_objects:
         update_object_position(space, body)
-        save_statistics_to_file(file, body, float(physical_time))
+        save_statistics_to_file(file, body)
+
 
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
@@ -78,6 +78,7 @@ def start_execution():
 
     execution()
     print('Started execution...')
+
 
 
 def stop_execution():
