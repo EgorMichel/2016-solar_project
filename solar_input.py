@@ -87,10 +87,16 @@ def write_space_objects_data_to_file(output_filename, space_objects):
 
 
 def save_statistics_to_file(file, obj, time):
-        mass = [obj.type, str(obj.R), obj.color, str(obj.m), str(obj.x),
-                str(obj.y), str(obj.Vx), str(obj.Vy),
-                str(obj.Fy), str(obj.Fy), obj.name, str(time), '\n']
-        file.writelines(' '.join(mass))
+    """
+    Сохранение текущей статистики небесного тела в файл
+    param: file: файл для записи данных
+    param: obj: объект планеты, данные которой записываются
+    param: time: время с начала моделирования движения планет
+    """
+    mass = [obj.type, str(obj.R), obj.color, str(obj.m), str(obj.x),
+            str(obj.y), str(obj.Vx), str(obj.Vy),
+            str(obj.Fy), str(obj.Fy), obj.name, str(time), '\n']
+    file.writelines(' '.join(mass))
 
 
 if __name__ == "__main__":

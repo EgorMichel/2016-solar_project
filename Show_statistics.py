@@ -4,6 +4,12 @@ import pylab
 
 
 def equal_size(array1, array2):
+    """
+    Приведение двух массивов к одному размеру
+    param: array1:
+    param: array2:
+    return: два массива одинаковых размеров
+    """
     if len(array1) > len(array2):
         temp = []
         temp = array1
@@ -16,6 +22,11 @@ def equal_size(array1, array2):
 
 
 def draw_graphics(file_name, mass):
+    """
+    Рисует графики, считывая данные из файла
+    param: file_name: имя файла для чтения данных
+    param: mass: масса планеты, для которой строится график
+    """
     x_star = np.array([])
     y_star = np.array([])
     v_star = np.array([])
@@ -25,22 +36,10 @@ def draw_graphics(file_name, mass):
     time = np.array([])
     name = ''
 
-    # star.type = line.split()[0]
-    # star.R = float(line.split()[1])
-    # star.color = line.split()[2]
-    # star.m = float(line.split()[3])
-    # star.x = float(line.split()[4])
-    # star.y = float(line.split()[5])
-    # star.Vx = float(line.split()[6])
-    # star.Vy = float(line.split()[7])
-    # star.Fx = float(line.split()[8])
-    # star.Fy = float(line.split()[9])
-    # star.name = float(line.split()[10])
-    # time = float(line.split()[11])
     with open(file_name) as input_file:
         for line in input_file:
             if len(line.strip()) == 0 or line[0] == '#':
-                continue  # пустые строки и строки-комментарии пропускаем
+                continue
             if len(line) < 140:
                 continue
             else:

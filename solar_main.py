@@ -36,12 +36,14 @@ file = open(file_name, "a+")
 
 
 def click(event):
+    """
+    Обработка нажатия на планету
+    """
     for obj in space_objects:
         if obj.type == "Planet":
             x = int(obj.x * Scale) + window_width//2
             y = window_height//2 - int(obj.y*Scale)
             if (event.x - x) ** 2 + (event.y - y) ** 2 < obj.R ** 2:
-                print('sosi')
                 draw_graphics(file_name, obj.m)
 
 
@@ -117,8 +119,8 @@ def open_file_dialog():
             print(obj.type)
             raise AssertionError()
 
-    file = open("Test.txt", "w")
-    file.close()
+    filel = open("Test.txt", "w")
+    filel.close()
 
 
 def save_file_dialog():
@@ -182,4 +184,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
