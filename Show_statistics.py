@@ -52,8 +52,8 @@ def draw_graphics(file_name, mass):
                     v_star = np.append(v_star, v)
 
                 if line.split()[0] == "Planet":
-                    time = np.append(time, float(line.split()[11]))
                     if float(line.split()[3]) == mass:
+                        time = np.append(time, float(line.split()[11]))
                         name = line.split()[10]
                         x_planet = np.append(x_planet, float(line.split()[4]))
                         y_planet = np.append(y_planet, float(line.split()[5]))
@@ -98,5 +98,5 @@ def draw_graphics(file_name, mass):
 
     plt.subplots_adjust(hspace=0.5, wspace=0.5)
 
-    plt.savefig('velocity(distance).png')
+    plt.savefig('graphics.png')
     plt.show()

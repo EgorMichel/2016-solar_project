@@ -2,13 +2,13 @@
 # license: GPLv3
 
 
-class Celestial_Body:
+class CelestialBody:
     """
     Класс небесного тела.
     Содержит массу, координаты, скорость звезды,
     а также визуальный радиус звезды в пикселах и её цвет.
     """
-    def __init__(self, type='', m=0, x=0, y=0, Vx=0, Vy=0, Fx=0, Fy=0, R=0, color='', name=''):
+    def __init__(self, type='', m=0, x=0, y=0, vx=0, vy=0, fx=0, fy=0, r=0, color='', name=''):
         self.type = type
         """Признак объекта планеты"""
 
@@ -21,19 +21,19 @@ class Celestial_Body:
         self.y = y
         """Координата по оси **y**"""
 
-        self.Vx = Vx
+        self.Vx = vx
         """Скорость по оси **x**"""
 
-        self.Vy = Vy
+        self.Vy = vy
         """Скорость по оси **y**"""
 
-        self.Fx = Fx
+        self.Fx = fx
         """Сила по оси **x**"""
 
-        self.Fy = Fy
+        self.Fy = fy
         """Сила по оси **y**"""
 
-        self.R = R
+        self.R = r
         """Радиус планеты"""
 
         self.color = color
@@ -46,7 +46,7 @@ class Celestial_Body:
         """Изображение планеты"""
 
 
-class Star(Celestial_Body):
+class Star(CelestialBody):
     """Тип данных, описывающий звезду.
      Наследование от класса небесного тела
     """
@@ -55,7 +55,7 @@ class Star(Celestial_Body):
         self.R = 5
 
 
-class Planet(Celestial_Body):
+class Planet(CelestialBody):
     """Тип данных, описывающий планету.
     Наследование от класса небесного тела.
     """
