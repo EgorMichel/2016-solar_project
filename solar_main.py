@@ -2,11 +2,11 @@
 # license: GPLv3
 
 import tkinter
-from tkinter.filedialog import *
-from solar_vis import *
-from solar_model import *
-from solar_input import *
-from Show_statistics import *
+import tkinter.filedialog
+import solar_vis
+import solar_model
+import solar_input
+import Show_statistics
 
 perform_execution = False
 """Флаг цикличности выполнения расчёта"""
@@ -41,10 +41,10 @@ def click(event):
     """
     for obj in space_objects:
         if obj.type == "Planet":
-            x = int(obj.x * Scale) + window_width//2
-            y = window_height//2 - int(obj.y*Scale)
+            x = int(obj.x * Scale) + solar_vis.window_width//2
+            y = solar_vis.window_height//2 - int(obj.y*Scale)
             if (event.x - x) ** 2 + (event.y - y) ** 2 < obj.R ** 2:
-                draw_graphics(file_name, obj.m)
+                Show_statistics.draw_graphics(file_name, obj.m)
 
 
 def execution():
@@ -55,10 +55,10 @@ def execution():
     """
     global physical_time
     global displayed_time
-    recalculate_space_objects_positions(space_objects, time_step.get())
+    solar_model.recalculate_space_objects_positions(space_objects, time_step.get())
     for body in space_objects:
-        update_object_position(space, body)
-        save_statistics_to_file(file, body, float(displayed_time.get()[:-13]))
+        solar_vis.update_object_position(space, body)
+        solar_input.save_statistics_to_file(file, body, float(displayed_time.get()[:-13]))
 
     physical_time += time_step.get()
     displayed_time.set("%.1f" % physical_time + " seconds gone")
@@ -104,17 +104,17 @@ def open_file_dialog():
     perform_execution = False
     for obj in space_objects:
         space.delete(obj.image)  # удаление старых изображений планет
-    in_filename = askopenfilename(filetypes=(("Text file", ".txt"),))
-    space_objects = read_space_objects_data_from_file(in_filename)
+    in_filename = tkinter.filedialog.askopenfilename(filetypes=(("Text file", ".txt"),))
+    space_objects = solar_input.read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.x), abs(obj.y)) for obj in space_objects])
 
-    Scale = calculate_scale_factor(max_distance)
+    Scale = solar_vis.calculate_scale_factor(max_distance)
 
     for obj in space_objects:
         if obj.type == 'Star':
-            create_star_image(space, obj)
+            solar_vis.create_star_image(space, obj)
         elif obj.type == 'Planet':
-            create_planet_image(space, obj)
+            solar_vis.create_planet_image(space, obj)
         else:
             print(obj.type)
             raise AssertionError()
@@ -128,8 +128,8 @@ def save_file_dialog():
     функцию считывания параметров системы небесных тел из данного файла.
     Считанные объекты сохраняются в глобальный список space_objects
     """
-    out_filename = asksaveasfilename(filetypes=(("Text file", ".txt"),))
-    write_space_objects_data_to_file(out_filename, space_objects)
+    out_filename = tkinter.filedialog.asksaveasfilename(filetypes=(("Text file", ".txt"),))
+    solar_input.write_space_objects_data_to_file(out_filename, space_objects)
 
 
 def main():
@@ -148,7 +148,7 @@ def main():
 
     root = tkinter.Tk()
     # космическое пространство отображается на холсте типа Canvas
-    space = tkinter.Canvas(root, width=window_width, height=window_height, bg="black")
+    space = tkinter.Canvas(root, width=solar_vis.window_width, height=solar_vis.window_height, bg="black")
     space.pack(side=tkinter.TOP)
     # нижняя панель с кнопками
     frame = tkinter.Frame(root)
