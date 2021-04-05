@@ -1,6 +1,6 @@
 # coding: utf-8
 # license: GPLv3
-from math import *
+import math
 gravitational_constant = 6.67408e-11
 """Гравитационная постоянная Ньютона G"""
 
@@ -20,7 +20,7 @@ def calculate_force(body, space_objects):
     for obj in space_objects:
         if body == obj:
             continue
-        r = sqrt(((body.x - obj.x) ** 2 + (body.y - obj.y) ** 2))
+        r = math.sqrt(((body.x - obj.x) ** 2 + (body.y - obj.y) ** 2))
         fx -= (gravitational_constant * obj.m * body.m * (body.x - obj.x))/r**3
         fy -= (gravitational_constant * obj.m * body.m * (body.y - obj.y)) / r**3
     body.Fx = fx
